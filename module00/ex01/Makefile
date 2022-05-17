@@ -6,7 +6,7 @@
 #    By: vpericat <vpericat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/08 13:47:27 by vpericat          #+#    #+#              #
-#    Updated: 2022/05/13 18:20:43 by vpericat         ###   ########.fr        #
+#    Updated: 2022/05/17 16:04:17 by vpericat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = phonebook
 PROJECT_NAME = PHONEBOOK
 
 #FILES
-SOURCES = main.cpp Contact.cpp
-HEADERS = Contact.hpp
+SOURCES = main.cpp Contact.cpp PhoneBook.cpp
+HEADERS = Contact.hpp PhoneBook.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS
@@ -34,7 +34,7 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) $(PREPROCFLAGS) -c $< -o $@
 	@echo "$(_BUILDBANNER) $@"
 
-$(NAME): $(OBJECTS) $(HEADERS)
+$(NAME): $(OBJECTS)
 	@$(CC) $(CFLAGS) -o $@ $(OBJECTS)
 	@echo "$(_BUILDBANNER) $@"
 
