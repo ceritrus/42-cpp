@@ -31,7 +31,7 @@ void PhoneBook::search()
 	Contact nameless;
 	nameless.formatDisplay(-1);
 	int i = 0;
-	while (m_contacts[i].isAssigned())
+	while (m_contacts[i].isAssigned() && i < 8)
 	{
 		m_contacts[i].formatDisplay(i);
 		i++;
@@ -42,8 +42,13 @@ void PhoneBook::search()
 	int index = 8;
 	while (index >= i)
 	{
+		std::string input;
 		std::cout << "Insert the index of the contact you want to display: ";
-		std::cin >> index;
+		std::getline(std::cin, input);
+		if (input == "0" || input == "1" || input == "2" || input == "3" || input == "4" || input == "5" || input == "6" || input == "7")
+			index = input[0] - '0';
+		else
+			input = 8;
 		if (index >= i)
 			std::cout << "Error: index out of range" << std::endl;
 	}

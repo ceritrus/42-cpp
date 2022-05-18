@@ -17,7 +17,7 @@ Contact::~Contact()
 
 void Contact::display()
 {
-	std::cout << "-- CONTACT INFO --" << std::endl;
+	std::cout << "-- CONTACT INFOS --" << std::endl;
 	std::cout << "Name: " << m_name << std::endl;
 	std::cout << "Last Name: " << m_last_name << std::endl;
 	std::cout << "Nickame: " << m_nickname << std::endl;
@@ -76,7 +76,7 @@ std::string Contact::format(std::string str)
 	std::string output;
 	if (str.size() > 10)
 	{
-		output = str.substr(0, 10);
+		output = str.substr(0, 9);
 		output.append(".");
 	}
 	else
