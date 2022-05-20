@@ -10,13 +10,19 @@ int main(void)
 		std::cout << "-- MENU --" << std::endl;
 		std::cout << "PhoneBook: ";
 		std::getline(std::cin, input);
-		std::cout << std::endl;
 		if (input == "ADD")
+		{
+			std::cout << std::endl;
 			phonebook.add();
+		}
 		else if (input == "SEARCH")
+		{
+			std::cout << std::endl;
 			phonebook.search();
+		}
 		else if (input == "EXIT")
 		{
+			std::cout << std::endl;
 			std::cout << "-- EXIT --" << std::endl << "Bye!" << std::endl;
 			return 0;
 		}
