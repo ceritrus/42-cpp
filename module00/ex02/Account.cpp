@@ -65,6 +65,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 	_totalAmount -= withdrawal;
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "nb_withdrawals:" << _nbDeposits << std::endl;
+	return 1;
 }
 
 int		Account::checkAmount(void) const
@@ -126,14 +127,14 @@ void Account::_displayTimestamp()
 	// return ;
 
 	time_t now = time(0);
-	tm time;
-	localtime_s(&time, &now);
-	std::cout << "[" << 1900 + time.tm_year;
-	printDigit(1 + time.tm_mon);
-	printDigit(time.tm_mday);
+	tm *time;
+	time = localtime(&now);
+	std::cout << "[" << 1900 + time->tm_year;
+	printDigit(1 + time->tm_mon);
+	printDigit(time->tm_mday);
 	std::cout << "_";
-	printDigit(time.tm_hour);
-	printDigit(time.tm_min);
-	printDigit(time.tm_sec);
+	printDigit(time->tm_hour);
+	printDigit(time->tm_min);
+	printDigit(time->tm_sec);
 	std::cout << "] ";
 }
