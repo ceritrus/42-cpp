@@ -20,7 +20,7 @@ void Harl::complain(std::string level)
 		&Harl::error,
 	};
 
-	std::string levels[]
+	std::string levels[] =
 	{
 		"DEBUG",
 		"INFO",
@@ -36,7 +36,7 @@ void Harl::complain(std::string level)
 
 void Harl::filter(std::string level)
 {
-	std::string levels[]
+	std::string levels[] =
 	{
 		"DEBUG",
 		"INFO",
