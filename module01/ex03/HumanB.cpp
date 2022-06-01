@@ -1,7 +1,7 @@
 #include "HumanB.hpp"
 
 HumanB::HumanB(std::string newName)
-	: name(newName), weapon(nullptr)
+	: name(newName), weapon(NULL)
 {
 	
 }

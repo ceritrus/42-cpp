@@ -19,7 +19,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 ##	VISUALS	##
 _BANNER = \033[1m\033[34m[$(PROJECT_NAME)]\033[39m

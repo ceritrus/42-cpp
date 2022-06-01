@@ -10,17 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = harl
-PROJECT_NAME = HARL 2.0
+NAME = fixed
+PROJECT_NAME = fixed
 
 #FILES
-SOURCES = main.cpp Harl.cpp
-HEADERS = Harl.hpp
+SOURCES = main.cpp Fixed.cpp
+HEADERS = Fixed.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror
 
 ##	VISUALS	##
 _BANNER = \033[1m\033[34m[$(PROJECT_NAME)]\033[39m

@@ -15,14 +15,14 @@ int parsing (int argc, char **argv, std::ifstream* input, std::ofstream* output)
 		return 1;
 	}
 	std::string filename(argv[1]);
-	input->open(filename);
+	input->open(filename.c_str());
 	if (input->fail())
 	{
 		std::cerr << "Error: failed to open input file [" << filename << "]" << std::endl;
 		return 1;
 	}
 	filename.append(".replace");
-	output->open(filename);
+	output->open(filename.c_str());
 	if (output->fail())
 	{
 		input->close();

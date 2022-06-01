@@ -55,7 +55,7 @@ void Contact::formatDisplay(int index)
 	if (index < 0)
 		std::cout << "Index";
 	else
-		std::cout << format(std::to_string(index));
+		std::cout << index;
 	std::cout << std::resetiosflags(std::ios::showbase) << "|";
 
 	// Name
