@@ -41,14 +41,13 @@ int main(int argc, char **argv)
 		return 1;
 	std::stringstream buffer;
 	buffer << input.rdbuf();
-	std::string	text(buffer.str());
+	std::string text(buffer.str());
 	std::string search(argv[2]);
 	std::string replace(argv[3]);
 	int pos = 0;
 	int prevpos = 0;
 	while ((pos = text.find(search, prevpos)) != EOF)
 	{
-		std::string result;
 		output << text.substr(prevpos, pos - prevpos);
 		output << replace;
 		prevpos = pos + search.length();

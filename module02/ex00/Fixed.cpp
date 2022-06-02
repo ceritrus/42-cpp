@@ -1,6 +1,7 @@
 #include "Fixed.hpp"
 
 bool Fixed::_verbose = true;
+const int Fixed::_fractional_bits = 8;
 
 Fixed::Fixed()
 	: _value(0)
@@ -9,11 +10,11 @@ Fixed::Fixed()
 		std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& origin)
+Fixed::Fixed(const Fixed& input)
 {
 	if (_verbose)
 		std::cout << "Copy constructor called" << std::endl;
-	*this = origin;
+	*this = input;
 }
 
 Fixed::~Fixed()

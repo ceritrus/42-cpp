@@ -10,17 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
-PROJECT_NAME = FIXED
+NAME = bsp
+PROJECT_NAME = BSP
 
 #FILES
-SOURCES = main.cpp Fixed.cpp
-HEADERS = Fixed.hpp
+SOURCES = main.cpp Fixed.cpp Point.cpp bsp.cpp
+HEADERS = Fixed.hpp Point.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 ##	VISUALS	##
 _BANNER = \033[1m\033[34m[$(PROJECT_NAME)]\033[39m

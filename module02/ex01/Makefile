@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
-PROJECT_NAME = FIXED
+NAME = betterFixed
+PROJECT_NAME = BETTERFIXED
 
 #FILES
 SOURCES = main.cpp Fixed.cpp
