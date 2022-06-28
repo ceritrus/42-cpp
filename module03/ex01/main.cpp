@@ -11,6 +11,7 @@ int main()
 	alice.beRepaired(2);
 	jeff.takeDamage(8);
 	alice.guardGate();
+
 	jeff.status();
 	alice.status();
 }

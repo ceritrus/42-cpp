@@ -3,7 +3,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 public:
 	ScavTrap();
@@ -13,16 +13,15 @@ public:
 private:
 	std::string _name;
 	int _hitPoints;
-	int _energyPoints;
 	int _attackDamage;
 
-public:
+protected:
+	int _energyPoints;
 	void attack(const std::string& target);
+
+public:
 	void guardGate();
 	void status();
-
-private:
-	int checkRessources();
 };
 
 #endif

@@ -1,14 +1,14 @@
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class FragTrap : public ClapTrap
 {
 public:
-	ScavTrap();
-	ScavTrap(std::string name);
-	~ScavTrap();
+	FragTrap();
+	FragTrap(std::string name);
+	~FragTrap();
 
 private:
 	std::string _name;
@@ -18,7 +18,7 @@ private:
 
 public:
 	void attack(const std::string& target);
-	void guardGate();
+	void highFivesGuys(void);
 	void status();
 
 private:

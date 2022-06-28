@@ -1,14 +1,15 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap()
-	: ClapTrap(), _hitPoints(100), _energyPoints(50), _attackDamage(20)
+	: ClapTrap(), _hitPoints(100), _attackDamage(20), _energyPoints(50)
 {
 	std::cout << "ScavTrap initialized to default" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name)
-	: ClapTrap(name), _name(name), _hitPoints(100), _energyPoints(50), _attackDamage(20)
+	: ClapTrap(name), _hitPoints(100), _attackDamage(20), _energyPoints(50)
 {
+	_name = name;
 	std::cout << "ScavTrap " << _name << " initialized" << std::endl;
 }
 
@@ -28,22 +29,7 @@ void ScavTrap::attack(const std::string& target)
 
 void ScavTrap::guardGate()
 {
-	std::cout << _name << " is now in gatekeeper mode" << std::endl;
-}
-
-int ScavTrap::checkRessources()
-{
-	if (_hitPoints <= 0)
-	{
-		std::cout << _name << ": not enough hit points to perform action!" << std::endl;
-		return 1;
-	}
-	if (_energyPoints <= 0)
-	{
-		std::cout << _name << ": not enough energy points to perform action!" << std::endl;
-		return 1;
-	}
-	return 0;
+	std::cout << _name << " is now in gatekeeper mode with " << _hitPoints << " hp" << std::endl;
 }
 
 void ScavTrap::status()

@@ -7,8 +7,9 @@ ScavTrap::ScavTrap()
 }
 
 ScavTrap::ScavTrap(std::string name)
-	: ClapTrap(name), _name(name), _hitPoints(100), _energyPoints(50), _attackDamage(20)
+	: ClapTrap(name), _hitPoints(100), _energyPoints(50), _attackDamage(20)
 {
+	_name = name;
 	std::cout << "ScavTrap " << _name << " initialized" << std::endl;
 }
 
