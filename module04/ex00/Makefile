@@ -6,16 +6,16 @@
 #    By: vpericat <vpericat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/08 13:47:27 by vpericat          #+#    #+#              #
-#    Updated: 2022/06/30 14:40:48 by vpericat         ###   ########.fr        #
+#    Updated: 2022/06/30 15:08:28 by vpericat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = DiamondTrap
-PROJECT_NAME = DIAMONDTRAP
+NAME = Polymorphism
+PROJECT_NAME = POLYMORPHISM
 
 #FILES
-SOURCES = main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp
-HEADERS = ClapTrap.hpp FragTrap.hpp ScavTrap.hpp DiamondTrap.hpp
+SOURCES = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS
