@@ -6,21 +6,21 @@
 #    By: vpericat <vpericat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/08 13:47:27 by vpericat          #+#    #+#              #
-#    Updated: 2022/05/17 16:04:17 by vpericat         ###   ########.fr        #
+#    Updated: 2022/06/30 15:23:52 by vpericat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = betterFixed
-PROJECT_NAME = BETTERFIXED
+NAME = Interface
+PROJECT_NAME = INTERFACE
 
 #FILES
-SOURCES = main.cpp Fixed.cpp
-HEADERS = Fixed.hpp
+SOURCES = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
+HEADERS = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp IMateriaSource.hpp Character.hpp MateriaSource.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 ##	VISUALS	##
 _BANNER = \033[1m\033[34m[$(PROJECT_NAME)]\033[39m

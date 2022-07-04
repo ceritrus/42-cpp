@@ -13,8 +13,9 @@ void talk(const Animal* beast)
 
 int main()
 {
-	Animal* meta = new Animal();
-	talk(meta);
+	// Uncomment to see compilation "error"
+	// Animal* meta = new Animal();
+
 	Dog* dog = new Dog();
 	talk(dog);
 	Cat* cat = new Cat();

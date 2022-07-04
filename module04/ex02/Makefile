@@ -6,16 +6,16 @@
 #    By: vpericat <vpericat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/08 13:47:27 by vpericat          #+#    #+#              #
-#    Updated: 2022/05/17 16:04:17 by vpericat         ###   ########.fr        #
+#    Updated: 2022/06/30 15:23:52 by vpericat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = betterFixed
-PROJECT_NAME = BETTERFIXED
+NAME = AbstractClass
+PROJECT_NAME = ABSTRACTCLASS
 
 #FILES
-SOURCES = main.cpp Fixed.cpp
-HEADERS = Fixed.hpp
+SOURCES = main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+HEADERS = Animal.hpp Cat.hpp Dog.hpp Brain.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS
