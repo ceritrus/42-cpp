@@ -39,7 +39,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &that)
     return *this;
 }
 
-const std::string Bureaucrat::getName(void) const
+std::string const Bureaucrat::getName(void) const
 {
     return _name;
 }
@@ -65,9 +65,42 @@ void Bureaucrat::decGrade(void)
         _grade += 1;
 }
 
+void Bureaucrat::signForm(Form &form) const
+{
+    if (form.isSigned())
+	{
+		std::cout << *this << " cannot sign " << form
+        << " because the form is already signed" << std::endl;
+	}
+	else if (form.getSignGrade() < _grade)
+	{
+		std::cout << *this << " cannot sign " << form
+        << " because it's grade is too low" << std::endl;
+	}
+	else
+	{
+		std::cout << *this << " signs " << form << std::endl;
+	}
+    form.beSigned(*this);
+}
+
+void Bureaucrat::executeForm(Form &form) const
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << *this << " executed " << form << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+}
+
+
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &that)
 {
-    out << that.getName();
-    out << ", bureaucrat grade " << that.getGrade();
+    out << that.getName()
+        << " (Grade[" << that.getGrade() << "])";
     return out;
 }

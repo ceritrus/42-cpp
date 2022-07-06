@@ -16,7 +16,7 @@ int	main(void)
 	}
 	catch (std::exception & ex)
 	{
-		std::cout << "Exception : " << ex.what() << std::endl;
+		std::cerr << "Exception : " << ex.what() << std::endl;
 	}
 	return (0);
 }

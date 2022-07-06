@@ -7,6 +7,9 @@
 
 # include <iostream>
 
+class Bureaucrat;
+# include "Form.hpp"
+
 class Bureaucrat
 {
 private:
@@ -35,6 +38,8 @@ public:
 
     void incGrade(void);
     void decGrade(void);
+
+    void signForm(Form &form) const;
 };
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &that);

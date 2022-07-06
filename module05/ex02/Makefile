@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Interface
-PROJECT_NAME = INTERFACE
+NAME = Shrubbery
+PROJECT_NAME = SHRUBBERY
 
 #FILES
-SOURCES = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
-HEADERS = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp IMateriaSource.hpp Character.hpp MateriaSource.hpp
+SOURCES = main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+HEADERS = Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 #MISCELLANEOUS

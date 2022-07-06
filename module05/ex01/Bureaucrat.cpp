@@ -65,9 +65,28 @@ void Bureaucrat::decGrade(void)
         _grade += 1;
 }
 
+void Bureaucrat::signForm(Form &form) const
+{
+    if (form.isSigned())
+	{
+		std::cout << *this << " cannot sign " << form
+        << " because the form is already signed" << std::endl;
+	}
+	else if (form.getSignGrade() < _grade)
+	{
+		std::cout << *this << " cannot sign " << form
+        << " because it's grade is too low" << std::endl;
+	}
+	else
+	{
+		std::cout << *this << " signs " << form << std::endl;
+	}
+    form.beSigned(*this);
+}
+
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &that)
 {
-    out << that.getName();
-    out << ", bureaucrat grade " << that.getGrade();
+    out << that.getName()
+        << " (Grade[" << that.getGrade() << "])";
     return out;
 }

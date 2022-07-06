@@ -5,7 +5,10 @@
 #  define DEBUG false
 # endif
 
-# include <iostream>
+#include <iostream>
+
+class Bureaucrat;
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -35,6 +38,9 @@ public:
 
     void incGrade(void);
     void decGrade(void);
+
+    void signForm(Form &form) const;
+    void executeForm(Form &form) const;
 };
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &that);
