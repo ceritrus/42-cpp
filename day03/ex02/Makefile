@@ -1,15 +1,15 @@
-NAME = ex04
-PROJECT_NAME = EX04
+NAME = ex02
+PROJECT_NAME = EX02
 
 #FILES
-FILES = main.cpp
-HEADER = 
+FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 #OBJECTS
 OBJS = $(FILES:.cpp=.o)
 
 #MISCELLANEOUS
-DEBUGFLAGS =#-DDEBUG
+DEBUGFLAGS = #-DDEBUG
 PREPROCFLAGS = $(DEBUGFLAGS)
 LINKERFLAGS = $(DEBUGFLAGS)
 CC = c++
@@ -35,7 +35,6 @@ clean:
 	@rm -rf $(OBJS)
 	@echo "$(_CLEANBANNER) object files"
 
-	
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(_CLEANBANNER) $(NAME)"
