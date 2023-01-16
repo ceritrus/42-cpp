@@ -1,37 +1,76 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
+#include <math.h>
 
 bool strischar(std::string str);
 bool strisint(std::string str);
 bool strisfloat(std::string str);
 bool strisdouble(std::string str);
 
-void display(double d)
-{
-	std::cout << "double: " << d << std::endl;
-}
-
 void display(char c)
 {
-	std::cout << "char: " << c << std::endl;
+	std::cout << "char: '" << static_cast<char>(c) << "'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << 'f' << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << std::endl;
 }
 
 void display(int n)
 {
+	if (std::isprint(n) == 0)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
 	std::cout << "int: " << n << std::endl;
+	std::cout << "float: " << static_cast<float>(n) << 'f' << std::endl;
+	std::cout << "double: " << static_cast<double>(n) << std::endl;
 }
 
 void display(float f)
 {
-	std::cout << "float: " << f << std::endl;
+	if (isnan(f) || isinf(f))
+	{
+		std::cout << "char: Impossible" << std::endl;
+		std::cout << "int: Impossible" << std::endl;
+	}
+	else
+	{
+		if (std::isprint(static_cast<int>(f)) == 0)
+			std::cout << "char: Non displayable" << std::endl;
+		else
+			std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+		std::cout << "int: " << static_cast<int>(f) << std::endl;
+	}
+	std::cout << "float: " << f << 'f' << std::endl;
+	std::cout << "double: " << static_cast<double>(f) << std::endl;
+}
+
+void display(double d)
+{
+	if (isnan(d) || isinf(d))
+	{
+		std::cout << "char: Impossible" << std::endl;
+		std::cout << "int: Impossible" << std::endl;
+	}
+	else
+	{
+		if (std::isprint(static_cast<int>(d)) == 0)
+			std::cout << "char: Non displayable" << std::endl;
+		else
+			std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+		std::cout << "int: " << static_cast<int>(d) << std::endl;
+	}
+	std::cout << "float: " << static_cast<float>(d) << 'f' << std::endl;
+	std::cout << "double: " << d << std::endl;
 }
 
 void display()
 {
-	std::cout <<  "char: impossible" << std::endl;
-	std::cout <<  "int: impossible" << std::endl;
-	std::cout <<  "float: impossible" << std::endl;
-	std::cout <<  "double: impossible" << std::endl;
+	std::cout <<  "char: Impossible" << std::endl;
+	std::cout <<  "int: Impossible" << std::endl;
+	std::cout <<  "float: Impossible" << std::endl;
+	std::cout <<  "double: Impossible" << std::endl;
 }
 
 int main(int argc, char **argv)
@@ -46,6 +85,7 @@ int main(int argc, char **argv)
 		std::cerr << "Error: too many arguments" << std::endl;
 		return 1;
 	}
+	std::cout << std::fixed << std::setprecision(2);
 	std::string input = std::string(argv[1]);
 	if (strischar(input))
 		display(input[0]);
