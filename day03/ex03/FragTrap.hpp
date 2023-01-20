@@ -1,6 +1,4 @@
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
-
+#pragma once
 #include "ClapTrap.hpp"
 
 class FragTrap : virtual public ClapTrap
@@ -8,20 +6,14 @@ class FragTrap : virtual public ClapTrap
 public:
 	FragTrap();
 	FragTrap(std::string name);
+	FragTrap(const FragTrap & copy);
 	~FragTrap();
+
+	FragTrap & operator = (const FragTrap & rhs);
 
 private:
 	std::string _name;
-	int _energyPoints;
-
-protected:
-	int _hitPoints;
-	int _attackDamage;
 
 public:
-	void attack(const std::string& target);
 	void highFivesGuys(void);
-	void status();
 };
-
-#endif

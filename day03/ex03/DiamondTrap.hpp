@@ -1,6 +1,4 @@
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
-
+#pragma once
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
@@ -9,7 +7,10 @@ class DiamondTrap : public FragTrap, public ScavTrap
 public:
 	DiamondTrap();
 	DiamondTrap(std::string name);
+	DiamondTrap(const DiamondTrap & copy);
 	~DiamondTrap();
+
+	DiamondTrap & operator = (const DiamondTrap & rhs);
 
 private:
 	std::string _name;
@@ -22,5 +23,3 @@ public:
 	using ScavTrap::attack;
 	void status();
 };
-
-#endif

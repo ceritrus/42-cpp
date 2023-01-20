@@ -1,20 +1,43 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
-	: ClapTrap(), _hitPoints(100), _energyPoints(50), _attackDamage(20)
+ScavTrap::ScavTrap() : ClapTrap()
 {
-	std::cout << "ScavTrap initialized to default" << std::endl;
+	#ifdef DEBUG
+		std::cout << "\033[33m[ScavTrap]\033[0m Default constructor called" << std::endl;
+	#endif
+	this->_name = "Scavvy";
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(std::string name)
-	: ClapTrap(name), _name(name), _hitPoints(100), _energyPoints(50), _attackDamage(20)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "ScavTrap " << _name << " initialized" << std::endl;
+	#ifdef DEBUG
+		std::cout << "\033[33m[ScavTrap]\033[0m Constructor called" << std::endl;
+	#endif
+	this->_name = name;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
+}
+
+ScavTrap::ScavTrap(const ScavTrap & copy)
+{
+	#ifdef DEBUG
+		std::cout << "\033[33m[ScavTrap]\033[0m Copy constructor called" << std::endl;
+	#endif
+	_name = copy._name;
+	_hitPoints = copy._hitPoints;
+	_energyPoints = copy._energyPoints;
+	_attackDamage = copy._attackDamage;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap " << _name << " destroyed "<< std::endl;
+	#ifdef DEBUG
+		std::cout << "\033[33m[ScavTrap]\033[0m Destructor called" << std::endl;
+	#endif
 }
 
 void ScavTrap::attack(const std::string& target)
@@ -22,8 +45,8 @@ void ScavTrap::attack(const std::string& target)
 	if (checkRessources())
 		return;
 	std::cout << _name << " violently shakes " << target;
-	std::cout << ", causing " << _attackDamage << " damage! Nice!" << std::endl;
-	_energyPoints -= 1;
+	std::cout << ", causing " << _attackDamage << " damage!" << std::endl;
+	_energyPoints--;
 }
 
 void ScavTrap::guardGate()
@@ -31,24 +54,14 @@ void ScavTrap::guardGate()
 	std::cout << _name << " is now in gatekeeper mode" << std::endl;
 }
 
-int ScavTrap::checkRessources()
+ScavTrap & ScavTrap::operator=(const ScavTrap & rhs)
 {
-	if (_hitPoints <= 0)
-	{
-		std::cout << _name << ": not enough hit points to perform action!" << std::endl;
-		return 1;
-	}
-	if (_energyPoints <= 0)
-	{
-		std::cout << _name << ": not enough energy points to perform action!" << std::endl;
-		return 1;
-	}
-	return 0;
-}
-
-void ScavTrap::status()
-{
-	std::cout << _name << " status:" << std::endl;
-	std::cout << "\tHit points: " << _hitPoints << std::endl;
-	std::cout << "\tEnergy points: "<< _energyPoints << std::endl;
+	#ifdef DEBUG
+		std::cout << "\033[33m[ScavTrap]\033[0m Copy assignment operator called" << std::endl;
+	#endif
+	_name = rhs._name;
+	_hitPoints = rhs._hitPoints;
+	_energyPoints = rhs._energyPoints;
+	_attackDamage = rhs._attackDamage;
+	return *this;
 }

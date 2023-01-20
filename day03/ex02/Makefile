@@ -1,5 +1,5 @@
-NAME = ex02
-PROJECT_NAME = EX02
+NAME = fragtrap
+PROJECT_NAME = FRAGTRAP
 
 #FILES
 FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
@@ -9,7 +9,7 @@ HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 OBJS = $(FILES:.cpp=.o)
 
 #MISCELLANEOUS
-DEBUGFLAGS = #-DDEBUG
+DEBUGFLAGS = -DDEBUG
 PREPROCFLAGS = $(DEBUGFLAGS)
 LINKERFLAGS = $(DEBUGFLAGS)
 CC = c++

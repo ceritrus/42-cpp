@@ -1,5 +1,5 @@
-NAME = ex03
-PROJECT_NAME = EX03
+NAME = diamondtrap
+PROJECT_NAME = DIAMONDTRAP
 
 #FILES
 FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
@@ -9,7 +9,7 @@ HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 OBJS = $(FILES:.cpp=.o)
 
 #MISCELLANEOUS
-DEBUGFLAGS = #-DDEBUG
+DEBUGFLAGS = -DDEBUG
 PREPROCFLAGS = $(DEBUGFLAGS)
 LINKERFLAGS = $(DEBUGFLAGS)
 CC = c++
