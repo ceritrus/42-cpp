@@ -7,14 +7,6 @@
 #include <sstream>
 #include <cstdlib>
 
-
-typedef struct {
-	int year;
-	int month;
-	int day;
-	float rate;
-} BitcoinEntry;
-
 class BitcoinExchange
 {
 public:
@@ -26,10 +18,12 @@ public:
 	BitcoinExchange & operator=(BitcoinExchange const & rhs);
 	
 	float getRate(std::string const & date) const;
-	BitcoinEntry parser(std::string const & line) const;
-	BitcoinEntry inputParser(std::string const & line) const;
+	float extractRate(std::string const & line) const;
+	float extractValue(std::string const & line) const;
 	size_t getDataSize() const;
+	int dateToInt(std::string const & date) const;
+
 private:
 	std::string 							_path;
-	std::map<std::string, BitcoinEntry> 	_data;
+	std::map<int, float> 	_data;
 };

@@ -29,23 +29,24 @@ int main(int argc, char **argv)
 
 			try
 			{
-				BitcoinEntry entry = exchange.inputParser(line);
-				float rate = exchange.getRate(date);
-				std::cout << entry.year << "-";
-				if (entry.month < 10)
-					std::cout << "0";
-				std::cout << entry.month << "-";
-				if (entry.day < 10)
-					std::cout << "0";
-				std::cout << entry.day << " => " << entry.rate << " = " << entry.rate * rate << std::endl;
+				float value = exchange.extractValue(line);
+
+				if (value <= -1)
+					std::cout << "Error: " << std::endl;
+				else
+				{
+					float rate = exchange.getRate(date);
+					if (rate < 0)
+						std::cout << "Error: date is older than data" << std::endl;
+					else
+						std::cout << date << " => " << value << " = " << value * rate << std::endl;
+				}
 			}
 			catch (std::exception &e)
 			{
 				std::cout << e.what() << std::endl;
 				continue;
 			}
-			
-			// exchange.getRate(date);
 		}
 	}
 	catch (std::exception &e)

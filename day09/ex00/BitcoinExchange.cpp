@@ -15,12 +15,9 @@ BitcoinExchange::BitcoinExchange() : _path("data.csv")
 		std::stringstream ss(line);
 		std::string date;
 		std::getline(ss, date, ',');
-		BitcoinEntry entry;
-		entry = parser(line);
-		ss >> entry.rate;
-		// if (entry.rate < 0 || entry.rate > 1000)
-		// 	throw std::runtime_error("Error: bad input (rate) -> " + line);
-		_data[date] = entry;
+		float entry;
+		ss >> entry;
+		_data[dateToInt(date)] = entry;
 	}
 }
 
@@ -39,12 +36,10 @@ BitcoinExchange::BitcoinExchange(std::string const & path) : _path(path)
 		std::stringstream ss(line);
 		std::string date;
 		std::getline(ss, date, ',');
-		BitcoinEntry entry;
-		entry = parser(line);
-		ss >> entry.rate;
-		// if (entry.rate < 0 || entry.rate > 1000)
-		// 	throw std::runtime_error("Error: bad input (rate) -> " + line);
-		_data[date] = entry;
+		float entry;
+		ss >> entry;
+
+		_data[dateToInt(date)] = entry;
 	}
 }
 
@@ -71,25 +66,22 @@ BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & rhs)
 
 float BitcoinExchange::getRate(std::string const & date) const
 {
-	if (_data.find(date) == _data.end())
+	int dateInt = dateToInt(date);
+	if (_data.find(dateInt) == _data.end())
 	{
-		// iterate over map to find closest date
-		for (std::map<std::string, BitcoinEntry>::const_iterator it = _data.begin(); it != _data.end(); ++it)
-		{
-			if (it->first > date)
-			{
-				if (it != _data.begin())
-					it--;
-				return it->second.rate;
-			}
-		}
+		std::map<int, float>::const_iterator closest = _data.lower_bound(dateInt);
+		if (closest == _data.begin())
+			return -1;
+		closest--;
+		return (closest)->second;
 	}
-	return _data.at(date).rate;
+	else
+		return _data.at(dateInt);
 }
 
-BitcoinEntry BitcoinExchange::parser(std::string const & line) const
+float BitcoinExchange::extractRate(std::string const & line) const
 {
-	BitcoinEntry entry;
+	float entry;
 	std::string temp;
 
 	std::stringstream ss(line);
@@ -98,7 +90,6 @@ BitcoinEntry BitcoinExchange::parser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input (year) -> " + line);
 	}
-	entry.year = std::atoi(temp.c_str());
 	temp = "";
 
 	std::getline(ss, temp, '-');
@@ -106,8 +97,8 @@ BitcoinEntry BitcoinExchange::parser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input (month) -> " + line);
 	}
-	entry.month = std::atoi(temp.c_str());
-	if (entry.month < 1 || entry.month > 12)
+	int month = std::atoi(temp.c_str());
+	if (month < 1 || month > 12)
 		throw std::runtime_error("Error: bad input (month) -> " + line);
 	temp = "";
 
@@ -116,8 +107,8 @@ BitcoinEntry BitcoinExchange::parser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input (day) -> " + line);
 	}
-	entry.day = std::atoi(temp.c_str());
-	if (entry.day < 1 || entry.day > 31)
+	int day = std::atoi(temp.c_str());
+	if (day < 1 || day > 31)
 		throw std::runtime_error("Error: bad input (day) -> " + line);
 	temp = "";
 
@@ -126,15 +117,32 @@ BitcoinEntry BitcoinExchange::parser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input (rate) -> " + line);
 	}
-	entry.rate = std::atof(temp.c_str());
+	if (temp.find_first_not_of("0123456789.") != std::string::npos)
+		throw std::runtime_error("Error: bad input => " + line);
+	entry = std::atof(temp.c_str());
 	temp = "";
 
 	return entry;
 }
 
-BitcoinEntry BitcoinExchange::inputParser(std::string const & line) const
+int BitcoinExchange::dateToInt(std::string const & date) const
 {
-	BitcoinEntry entry;
+	std::string temp;
+	std::stringstream ss(date);
+	std::getline(ss, temp, '-');
+	int year = std::atoi(temp.c_str());
+	temp = "";
+	std::getline(ss, temp, '-');
+	int month = std::atoi(temp.c_str());
+	temp = "";
+	std::getline(ss, temp);
+	int day = std::atoi(temp.c_str());
+	return (year * 10000 + month * 100 + day);
+}
+
+float BitcoinExchange::extractValue(std::string const & line) const
+{
+	float entry;
 	std::string temp;
 
 	std::stringstream ss(line);
@@ -143,7 +151,6 @@ BitcoinEntry BitcoinExchange::inputParser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input (year) -> " + line);
 	}
-	entry.year = std::atoi(temp.c_str());
 	temp = "";
 
 	std::getline(ss, temp, '-');
@@ -151,8 +158,8 @@ BitcoinEntry BitcoinExchange::inputParser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input (month) -> " + line);
 	}
-	entry.month = std::atoi(temp.c_str());
-	if (entry.month < 1 || entry.month > 12)
+	int month = std::atoi(temp.c_str());
+	if (month < 1 || month > 12)
 		throw std::runtime_error("Error: bad input => " + line);
 	temp = "";
 
@@ -161,9 +168,9 @@ BitcoinEntry BitcoinExchange::inputParser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input => " + line);
 	}
-	entry.day = std::atoi(temp.c_str());
+	int day = std::atoi(temp.c_str());
 	std::getline(ss, temp, ' ');
-	if (entry.day < 1 || entry.day > 31)
+	if (day < 1 || day > 31)
 		throw std::runtime_error("Error: bad input => " + line);
 	temp = "";
 
@@ -172,10 +179,12 @@ BitcoinEntry BitcoinExchange::inputParser(std::string const & line) const
 	{
 		throw std::runtime_error("Error: bad input => " + line);
 	}
-	entry.rate = std::atof(temp.c_str());
-	if (entry.rate < 0)
+	if (temp.find_first_not_of("0123456789.") != std::string::npos)
+		throw std::runtime_error("Error: bad input => " + line);
+	entry = std::atof(temp.c_str());
+	if (entry < 0)
 		throw std::runtime_error("Error: not a positive number.");
-	else if (entry.rate > 1000)
+	else if (entry > 1000)
 		throw std::runtime_error("Error: too large a number.");
 	temp = "";
 
