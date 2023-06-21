@@ -33,7 +33,10 @@ RPN & RPN::operator=(const RPN & src)
 void RPN::reset(const std::string & str)
 {
 	if (str.empty() || str.find_first_not_of("0123456789+-*/ ") != std::string::npos)
+	{
+		std::cerr << "Error: aaaaaa\n";
 		throw std::runtime_error("Error: invalid expression");
+	}
 	this->_op = str;
 	this->_stack = std::stack<float>();
 }
@@ -48,8 +51,11 @@ float RPN::compute()
 		if (isOperator(token))
 		{
 			if (_stack.size() < 2)
+			{
+				std::cerr << "Error: invalid expression\n";
 				throw std::runtime_error("Error: invalid expression");
-			float a = _stack.top();
+			}
+			float a = this->_stack.top();
 			_stack.pop();
 			float b = this->_stack.top();
 			_stack.pop();
@@ -60,7 +66,11 @@ float RPN::compute()
 			else if (token == '*')
 				_stack.push(b * a);
 			else if (token == '/')
+			{
+				if (a == 0)
+					throw std::runtime_error("Error: division by zero");
 				_stack.push(b / a);
+			}
 		}
 		else if (isNumber(token))
 		{
@@ -72,7 +82,10 @@ float RPN::compute()
 		}
 	}
 	if (_stack.size() != 1)
+	{
+		std::cerr << "Error: invalid expression\n";
 		throw std::runtime_error("Error: invalid expression");
+	}
 	return _stack.top();
 }
 

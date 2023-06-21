@@ -88,34 +88,34 @@ float BitcoinExchange::extractRate(std::string const & line) const
 	std::getline(ss, temp, '-');
 	if (temp.empty() || temp.size() != 4)
 	{
-		throw std::runtime_error("Error: bad input (year) -> " + line);
+		throw std::runtime_error("Error: bad input -> " + line);
 	}
 	temp = "";
 
 	std::getline(ss, temp, '-');
 	if (temp.empty() || temp.size() != 2)
 	{
-		throw std::runtime_error("Error: bad input (month) -> " + line);
+		throw std::runtime_error("Error: bad input -> " + line);
 	}
 	int month = std::atoi(temp.c_str());
 	if (month < 1 || month > 12)
-		throw std::runtime_error("Error: bad input (month) -> " + line);
+		throw std::runtime_error("Error: bad input -> " + line);
 	temp = "";
 
 	std::getline(ss, temp, ',');
 	if (temp.empty()  || temp.size() != 2)
 	{
-		throw std::runtime_error("Error: bad input (day) -> " + line);
+		throw std::runtime_error("Error: bad input -> " + line);
 	}
 	int day = std::atoi(temp.c_str());
 	if (day < 1 || day > 31)
-		throw std::runtime_error("Error: bad input (day) -> " + line);
+		throw std::runtime_error("Error: bad input -> " + line);
 	temp = "";
 
 	std::getline(ss, temp);
 	if (temp.empty())
 	{
-		throw std::runtime_error("Error: bad input (rate) -> " + line);
+		throw std::runtime_error("Error: bad input -> " + line);
 	}
 	if (temp.find_first_not_of("0123456789.") != std::string::npos)
 		throw std::runtime_error("Error: bad input => " + line);
